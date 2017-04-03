@@ -1,0 +1,33 @@
+Problema dello Zaino -- approccio 1
+
+Impostazione generale:
+Scelgo un pezzo da mettere nello zaino, e poi delego
+la soluzione del problema con i pezzi rimanenti.
+Ipotesi: i pezzi totali sono N, chiamiamoli Pezzi(N)
+
+Soluzione completa:
+Un insieme di pezzi
+
+Soluzione parziale (al livello i):
+Un insieme di 'i' pezzi: Parziale(i)
+
+La ricorsione inizia al livello i=0 (nessun pezzo)
+Al livello 'i' ho già 'i' pezzi scelti
+da Parziale(0) a Parziale(i-1),
+dovrò scegliere il pezzo 'i+1' (Parziale(i)), tra i (N-i) pezzi NON ancora scelti (Pezzi-Parziale)
+
+Livello massimo = N (non è detto che ci arrivi)
+
+Come genero Parziale(i+1) partendo da Parziale(i)?
+	for( p : Pezzi-Parziale )
+		Parziale(i) = p
+
+Quando una soluzione parziale è valida?
+Somma(pesi(Parziale(i))) <= capacità zaino
+
+Ogni soluzione parziale *valida* potrebbe essere una soluzione totale
+La soluzione deve essere salvata se il suo costo è massimo
+	Costo = somma(valore(Parziale(i)))
+Alla fine della ricorsione, mi interessa SOLO la(una) soluzione di costo massimo.
+
+L'avvio della ricorsione avviene al livello i=0, partendo da un insieme Parziale() vuoto.
